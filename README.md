@@ -6,7 +6,7 @@ Banka işlemlerinde dolandırıcılığı (fraud) tespit eden, her şüpheli iş
 
 ## Neden bu repo var / Why this repo exists
 
-Sadece "bu işlem şüpheli" diyen bir model işin yarısını yapar. Bir bankada müfettişin hâlâ *neden* şüpheli olduğunu anlaması, bir rapor yazması ve ne yapılacağına karar vermesi gerekir — yavaş, manuel bir iş. Bu proje tespiti bir açıklama ve karar katmanıyla birleştirir: **XGBoost** şüpheliyi bulur, **SHAP** nedenini açıklar, **LLM** Türkçe rapor taslağı yazar, ve bir **LangGraph ajanı** risk seviyesine göre kararı yönlendirir.
+Sadece "bu işlem şüpheli" diyen bir model işin yarısını yapar. Bir bankada müfettişin hâlâ *neden* şüpheli olduğunu anlaması, bir rapor yazması ve ne yapılacağına karar vermesi gerekir - yavaş, manuel bir iş. Bu proje tespiti bir açıklama ve karar katmanıyla birleştirir: **XGBoost** şüpheliyi bulur, **SHAP** nedenini açıklar, **LLM** Türkçe rapor taslağı yazar, ve bir **LangGraph ajanı** risk seviyesine göre kararı yönlendirir.
 
 Veri, herkese açık [PaySim](https://www.kaggle.com/datasets/ntnu-testimon/paysim1) sentetik mobil ödeme veri setidir. Gerçek müşteri verisi kullanılmamıştır.
 
@@ -62,7 +62,7 @@ Bu, gerçek bir AML sürecinin mantığıdır: her işleme rapor yazılmaz; sade
 > Risk faktörleri: errorBalanceOrig (+9.82), amount (+2.32), newbalanceDest (+1.19)
 > Gönderen bakiyenin aniden sıfıra düşmesi ve yüksek tutar nedeniyle işlem şüpheli bulunmuş, detaylı inceleme ve ilgili mercilere bildirim önerilmiştir.
 
-Bu zincir — **model (bayrak) → SHAP (neden) → LLM (rapor) → ajan (karar)** — projenin amacıdır.
+Bu zincir — **model (bayrak) → SHAP (neden) → LLM (rapor) → ajan (karar)** - projenin amacıdır.
 
 ## Kurulum / Setup
 
