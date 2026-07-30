@@ -56,6 +56,18 @@ Bu, gerçek bir AML sürecinin mantığıdır: her işleme rapor yazılmaz; sade
 
 *The steps are wired into a LangGraph state machine with risk-based routing: high-risk transactions get a report and are flagged for a human investigator; low-risk ones are auto-approved. This makes it an operational, human-in-the-loop workflow — not just a model.*
 
+**Ajanın düğümleri / Agent nodes:**
+
+| Düğüm / Node | Ne yapar / What it does |
+|--------------|--------------------------|
+| `fetch` | İşlemi alır, XGBoost ile fraud olasılığını hesaplar / fetches the transaction and scores it with XGBoost |
+| `analyze` | SHAP ile en güçlü 3 risk faktörünü çıkarır / extracts the top-3 SHAP risk factors |
+| `route` (koşullu / conditional) | Olasılık > 0.80 ise yüksek riske, değilse düşük riske yönlendirir / routes to high- or low-risk based on the probability |
+| `generate_report` | Yüksek risk: LLM ile Türkçe rapor üretir, kararı `REPORTED` yapar / high-risk: drafts the Turkish report, marks `REPORTED` |
+| `auto_approve` | Düşük risk: rapor üretmeden `AUTO_APPROVED` yapar / low-risk: marks `AUTO_APPROVED`, no report |
+
+Akış / Flow: `fetch → analyze → route → (generate_report | auto_approve) → END`
+
 **Örnek / Example (fetch → analyze → route → report):**
 > **ŞÜPHELİ İŞLEM RAPORU — Karar: REPORTED**
 > İşlem Tipi: TRANSFER · Tutar: 7.703.574,71 · Fraud olasılığı: %100
